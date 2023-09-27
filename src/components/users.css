@@ -1,0 +1,53 @@
+.header {
+  margin-top: 2rem;
+}
+.search-box {
+  width: 40%;
+  height: 2rem;
+  border-radius: 4px;
+  outline: none;
+}
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn {
+  height: 2rem;
+  cursor: pointer;
+  background-color: black;
+  color: goldenrod;
+  border-radius: 4px;
+  transition: all 0.5s ease-out;
+  margin: 0 5px;
+}
+.btn:hover {
+  box-shadow: 0 2px 3px 2px gray;
+}
+.add-btn {
+  margin: 0px 25px;
+}
+.user-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+.card {
+  border: 1px solid gray;
+  border-radius: 4px;
+  margin: 5px;
+  cursor: pointer;
+  padding: 10px 0;
+  box-shadow: 0 2px 3px 3px black;
+}
+.first {
+  text-align: left;
+}
+
+@media (max-width: 700px) {
+  .user-cards {
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    gap: 10px;
+  }
+}

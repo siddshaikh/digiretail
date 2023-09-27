@@ -1,0 +1,12 @@
+.add-user-form{
+    border: 1px solid gray;
+    border-radius: 4px;
+    padding: 10px;
+}
+.error{
+ color: red;
+}
+.user-inputs{
+    height: 1.5rem;
+    margin: 0 5px;
+}
