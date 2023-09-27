@@ -7,7 +7,8 @@ const Users = () => {
   const [users, setUsers] = useState([]);
   const [searchData, setSearchData] = useState("");
   const [isModalOpen, setIsModelOpen] = useState(false);
-
+  const [eror, setError] = useState("");
+  console.log(users);
   const [newUser, setNewUser] = useState({
     id: "",
     name: "",
@@ -18,7 +19,7 @@ const Users = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/uers"
+        "https://jsonplaceholder.typicode.com/users"
       );
       if (response) {
         localStorage.setItem("users", JSON.stringify(response.data));
@@ -30,16 +31,15 @@ const Users = () => {
   useEffect(() => {
     fetchData();
     const savedData = localStorage.getItem("users");
-    if (!savedData) {
-      return [];
-    } else {
-      setUsers(JSON.parse(localStorage.getItem("users")));
+    if (savedData !== null && savedData !== "") {
+      setUsers(JSON.parse(savedData));
     }
-  }, []);
+  }, [eror]);
   //   delete user
   const handleDelete = (id) => {
     const upDatedUsers = users.filter((user) => user.id !== id);
     setUsers(upDatedUsers);
+    localStorage.setItem("users", JSON.stringify(upDatedUsers));
   };
   //   popup on of
   const handlePopup = () => {
@@ -47,7 +47,13 @@ const Users = () => {
   };
   //   search the data
   const handleSearch = () => {
-    setUsers([...users].filter(({ name }) => name === searchData));
+    const data = setUsers([...users].filter(({ name }) => name === searchData));
+    if (!data) {
+      setError("No user found");
+      setSearchData("")
+      fetchData()
+      setError("")
+    }
   };
   return (
     <div>
@@ -86,11 +92,12 @@ const Users = () => {
         />
       )}
       {/* users table */}
+      <span>{eror !== "" && <span>{eror}</span>}</span>
       <div className="user-cards">
         {users ? (
           users.map((users) => (
             <div className="card flex" key={users.id}>
-              <div className="first" >
+              <div className="first">
                 <span>
                   <b>Name:</b> {users.name}
                 </span>
