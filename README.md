@@ -4,8 +4,7 @@
 ### install dependencies:
 axios
 
-## app image
-![Alt text](image.png)
+
 
 ## Available Scripts
 
